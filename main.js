@@ -1,4 +1,4 @@
-const board = document.querySelector('canvas');
+const board = document.querySelector('#snakeBoard');
 const board_ctx = board.getContext('2d');
 
 const boardBackground = '#2b2b2b';
@@ -15,11 +15,11 @@ let snake = [
     {x: 110 , y: 150}
 ];
 
-const SPACE = 32;
-const LEFT = 37;
-const UP = 38;
-const RIGHT = 39;
-const DOWN = 40;
+const SPACE = "Space";
+const LEFT = "ArrowLeft";
+const UP = "ArrowUp";
+const RIGHT = "ArrowRight";
+const DOWN = "ArrowDown";
 
 let dx = 10;
 let dy = 0;
@@ -63,7 +63,7 @@ function moveSnake() {
 
 function changeDirection(key) {
 
-    const keyPress = key.keyCode;
+    const keyPress = key.key;
     const goingLeft = (dx == -10);
     const goingRight = (dx == 10);
     const goingUp = (dy == -10);
@@ -149,7 +149,7 @@ function start() {
 let restart = function() {}
 
 function redirectToRestart(key) {
-    if (key.keyCode == SPACE && gameEnded == true) {
+    if (key.key == SPACE && gameEnded == true) {
         restart();
     }
 }
