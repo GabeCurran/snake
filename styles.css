@@ -32,4 +32,28 @@ canvas {
 
 #score {
     margin-bottom: 20px;
+    font-size: 2em;
+}
+
+#start {
+    margin-top: 20px;
+    padding: 5px 10px 5px 10px;
+    font-size: 2em;
+    background-color: #2b2b2b;
+    border: 3px #f76a6a solid;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+#start:hover {
+    transform: scale(1.05);
+}
+
+#start:active {
+    transform: scale(1.05);
+}
+
+#start:focus {
+    outline: none;
+    box-shadow: none;
 }
