@@ -8,12 +8,12 @@ const snakeColor = '#f76a6a';
 const snakeBorder = '#2b2b2b';
 
 let snake = [
-    {x: 300 , y: 300},
-    {x: 290 , y: 300},
-    {x: 280 , y: 300},
-    {x: 270 , y: 300},
-    {x: 260 , y: 300}
-]
+    {x: 150 , y: 150},
+    {x: 140 , y: 150},
+    {x: 130 , y: 150},
+    {x: 120 , y: 150},
+    {x: 110 , y: 150}
+];
 
 let dx = 10;
 let dy = 0;
@@ -134,44 +134,46 @@ function genFood() {
 
 document.addEventListener('keydown', changeDirection);
 
-let gameOver = false;
-
 function start() {
     startButton.removeEventListener('click', start);
+    startButton.style.display = 'none';
+    startButton.textContent = 'Restart';
     main();
 }
 
-function restart() {
-    clear();
-    snake = [
-        {x: 300 , y: 300},
-        {x: 290 , y: 300},
-        {x: 280 , y: 300},
-        {x: 270 , y: 300},
-        {x: 260 , y: 300}
-    ];
+let restart = function() {}
 
-    dx = 10;
-    dy = 0;
-
-    score = 0;
+function gameOver() {
+    restart = function() {
+        startButton.removeEventListener('click', restart);
+        startButton.style.display = 'none';
+        clear();
+        snake = [
+            {x: 150 , y: 150},
+            {x: 140 , y: 150},
+            {x: 130 , y: 150},
+            {x: 120 , y: 150},
+            {x: 110 , y: 150}
+        ];
+        dx = 10;
+        dy = 0;
+        score = 0;
+        scoreText.textContent = score;
+        main();
+    }
+    startButton.addEventListener('click', restart);
+    startButton.style.display = 'block';
 }
 
 function main() {
-    if (gameOver) {
-        return;
-    }
     setTimeout(function onTick() {
         clear();
         makeFood();
         moveSnake();
         drawSnake();
         if (checkForHit()) {
-            gameOver = true;
-            clear();
-            startButton.textContent = 'Restart';
-            startButton.addEventListener('click', start);
+            return gameOver();
         }
         main();
-    }, 100)
+    }, 50)
 }

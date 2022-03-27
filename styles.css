@@ -33,10 +33,14 @@ canvas {
 #score {
     margin-bottom: 20px;
     font-size: 2em;
+    text-decoration: underline;
+    text-decoration-color: #f76a6a;
+    text-underline-offset: 0.15em;
 }
 
 #start {
-    margin-top: 20px;
+    position: fixed;
+    bottom: 10vh;
     padding: 5px 10px 5px 10px;
     font-size: 2em;
     background-color: #2b2b2b;
