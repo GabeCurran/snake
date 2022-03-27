@@ -15,6 +15,12 @@ let snake = [
     {x: 110 , y: 150}
 ];
 
+const SPACE = 32;
+const LEFT = 37;
+const UP = 38;
+const RIGHT = 39;
+const DOWN = 40;
+
 let dx = 10;
 let dy = 0;
 
@@ -56,10 +62,6 @@ function moveSnake() {
 };
 
 function changeDirection(key) {
-    const LEFT = 37;
-    const UP = 38;
-    const RIGHT = 39;
-    const DOWN = 40;
 
     const keyPress = key.keyCode;
     const goingLeft = (dx == -10);
@@ -128,6 +130,9 @@ function genFood() {
     foodY = randomFood(0, board.height - 10);
 
     for (part in snake) {
+        if (part.x == foodX && part.y == foodY) {
+            genFood();
+        }
         eating(part);
     }
 }
@@ -143,8 +148,20 @@ function start() {
 
 let restart = function() {}
 
+function redirectToRestart(key) {
+    if (key.keyCode == SPACE && gameEnded == true) {
+        restart();
+    }
+}
+
+document.addEventListener('keydown', redirectToRestart);
+
+let gameEnded = false;
+
 function gameOver() {
+    gameEnded = true;
     restart = function() {
+        gameEnded = false;
         startButton.removeEventListener('click', restart);
         startButton.style.display = 'none';
         clear();
