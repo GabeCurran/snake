@@ -192,5 +192,5 @@ function main() {
             return gameOver();
         }
         main();
-    }, 50)
+    }, 60)
 }
