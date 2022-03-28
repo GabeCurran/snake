@@ -146,10 +146,27 @@ function start() {
     main();
 }
 
-let restart = function() {}
+let restart = function() {
+    gameEnded = false;
+    startButton.removeEventListener('click', restart);
+    startButton.style.display = 'none';
+    clear();
+    snake = [
+        {x: 150 , y: 150},
+        {x: 140 , y: 150},
+        {x: 130 , y: 150},
+        {x: 120 , y: 150},
+        {x: 110 , y: 150}
+    ];
+    dx = 10;
+    dy = 0;
+    score = 0;
+    scoreText.textContent = score;
+    main();
+}
 
 function redirectToRestart(key) {
-    if (key.key == SPACE && gameEnded == true) {
+    if (key.key == ' ' && gameEnded == true) {
         restart();
     }
 }
