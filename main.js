@@ -149,6 +149,10 @@ function start() {
 let restart = function() {};
 
 function redirectToRestart(key) {
+    if (gameStarted == false && key.key == ' ' && gameEnded == false) {
+        gameStarted = true;
+        start();
+    }
     if (key.key == ' ' && gameEnded == true) {
         restart();
     }
@@ -156,6 +160,7 @@ function redirectToRestart(key) {
 
 document.addEventListener('keydown', redirectToRestart);
 
+let gameStarted = false;
 let gameEnded = false;
 
 function gameOver() {
